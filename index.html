@@ -207,6 +207,53 @@ body::before {
     signOut
   };
 </script>
+  <script>
+  function openAuthModal() {
+    document.getElementById("authModal").style.display = "flex";
+  }
+
+  function closeAuthModal() {
+    document.getElementById("authModal").style.display = "none";
+  }
+
+  async function signupUser() {
+    const email = document.getElementById("authEmail").value;
+    const password = document.getElementById("authPassword").value;
+
+    try {
+      await firebaseAuth.createUserWithEmailAndPassword(
+        firebaseAuth.auth,
+        email,
+        password
+      );
+      alert("Account created");
+      closeAuthModal();
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+
+  async function loginUser() {
+    const email = document.getElementById("authEmail").value;
+    const password = document.getElementById("authPassword").value;
+
+    try {
+      await firebaseAuth.signInWithEmailAndPassword(
+        firebaseAuth.auth,
+        email,
+        password
+      );
+      alert("Logged in");
+      closeAuthModal();
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+
+  firebaseAuth.onAuthStateChanged(firebaseAuth.auth, (user) => {
+    window.currentUser = user;
+  });
+</script>
 <body>
   <div id="authModal" style="
   position: fixed;
