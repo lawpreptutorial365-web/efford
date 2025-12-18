@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lecture | LegalEdge</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, sans-serif;
+      background: radial-gradient(circle at 10% -20%, rgba(83,113,255,0.25), transparent 40%),
+                  radial-gradient(circle at 80% 0%, rgba(255,0,110,0.35), transparent 45%),
+                  #01020b;
+      color: #f2f2f2;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0.5rem 1.5rem 3rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.2rem;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .lecture-header {
+      margin-bottom: 0.2rem;
+    }
+
+    .subject-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin: 0;
+    }
+
+    .lecture-title {
+      margin: 0.4rem 0 0;
+      font-size: clamp(2.4rem, 4vw, 3.2rem);
+      line-height: 1.1;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 9.2fr 1.2fr;
+      gap: 1.4rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-top: 56.25%;
+      min-height: 82vh;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+
+      /* asymmetric expansion */
+      margin-top: 0.0cm;
+      margin-left: -1.5rem;    /* left */
+      margin-bottom: 1.2rem;   /* down */
+}
+
+    iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .ad-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      opacity: 0.6;
+      transition: opacity 0.4s ease;
+    }
+
+    .ad-panel:hover {
+      opacity: 1;
+    }
+
+    .ad-box {
+      border-radius: 16px;
+      padding: 1rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      min-height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .inline-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: baseline;
+      gap: 0.9rem;
+      margin-bottom: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .inline-title {
+      margin: 0;
+    }
+
+    .inline-subject {
+      margin: 0;
+    }
+
+    .divider {
+      color: rgba(255,255,255,0.4);
+      font-weight: 500;
+    }
+
+    /* unified top bar item style */
+    .top-bar .top-item,
+    .top-bar .back-link,
+    .top-bar .inline-subject {
+      font-size: 2.125rem;              /* between subject and lecture */
+      font-weight: 600;                /* same boldness */
+      color: #ffffff;                  /* gold */
+      line-height: 1.1;
+      text-decoration: none;
+    }
+
+/* neutralize previous styles inside top bar only */
+    .top-bar .lecture-title,
+    .top-bar .subject-eyebrow {
+      font-size: inherit;
+      letter-spacing: normal;
+      text-transform: none;
+    }
+
+/* divider styling */
+    .top-bar .divider {
+      color: rgba(212,175,55,0.6);
+      font-weight: 500;
+    }
+
+    .top-bar {
+      margin-top: 0.1cm;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <header class="lecture-header top-bar">
+      <a class="back-link" href="index.html">← Back to lectures</a>
+
+      <span class="divider">|</span>
+
+      <span class="top-item" id="lectureTitle">Lecture</span>
+
+      <span class="divider">|</span>
+
+      <p class="subject-eyebrow inline-subject" id="subjectText">SUBJECT</p>
+    </header>
+
+
+
+    <section class="content-grid">
+
+      <div class="video-wrapper">
+        <iframe
+          id="youtubePlayer"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <aside class="ad-panel">
+        <div class="ad-box">Advertisement Space</div>
+        <div class="ad-box">Your Promotion / Sponsor</div>
+        <div class="ad-box">Test Series / Coaching Ad</div>
+      </aside>
+
+    </section>
+  </div>
+
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+
+      const subject = params.get("subject") || "Subject";
+      const lectureId = params.get("lecture") || "Lecture";
+
+      document.getElementById("subjectText").textContent = subject.toUpperCase();
+      document.getElementById("lectureTitle").textContent = lectureId;
+
+      /* =================================================
+         SUBJECT → LECTURE → YOUTUBE VIDEO ID MAPPING
+         ================================================= */
+
+      const videoMap = {
+        "English Language": {
+          "EL-01": "xX96Wg6Axsw",
+          "EL-02": "yiX86TLIVe4"
+        },
+        "Legal Reasoning": {
+          "LR-01": "YOUR_VIDEO_ID"
+        },
+        "Critical Reasoning": {
+          "CR-01": "YOUR_VIDEO_ID"
+        },
+        "Analytical Reasoning": {
+          "AR-01": "YOUR_VIDEO_ID"
+        },
+        "Quantitative Techniques": {
+          "QT-01": "YOUR_VIDEO_ID"
+        }
+      };
+
+      const videoId = videoMap?.[subject]?.[lectureId];
+
+      if (!videoId) {
+        alert("Video not uploaded yet for this lecture.");
+        return;
+      }
+
+      document.getElementById("youtubePlayer").src =
+        `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`;
+    })();
+  </script>
+
+</body>
+</html>
