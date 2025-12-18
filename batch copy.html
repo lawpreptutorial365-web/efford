@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Premium Subject Experience</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+        background: radial-gradient(circle at 10% -20%, rgba(83, 113, 255, 0.25), transparent 40%),
+          radial-gradient(circle at 80% 0%, rgba(255, 0, 110, 0.35), transparent 45%),
+          #01020b;
+        color: #f2f2f2;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.8));
+      pointer-events: none;
+      z-index: -1;
+    }
+    .brand-gold {
+      background: linear-gradient(
+        135deg,
+      #f7e27c,
+      #e6b65c,
+      #c89b3c
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+    }
+    .price-tag {
+      background: linear-gradient(135deg, #f7e27c, #e6b65c, #c89b3c, #f7e27c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+      animation: shine 3s ease-in-out infinite;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+.price-tag::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 60%;
+      background: rgba(255, 255, 255, 0.3);
+    }
+    @keyframes shine {
+      0% { filter: brightness(1); }
+      50% { filter: brightness(1.5); }
+      100% { filter: brightness(1); }
+    }
+.page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 3rem;
+    }
+    .hero {
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 3rem;
+      border-radius: 24px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(6, 10, 24, 0.95), rgba(20, 26, 55, 0.6));
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65);
+    }
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.6;
+      z-index: 0;
+    }
+    .hero::before {
+      width: 400px;
+      height: 400px;
+      background: rgba(83, 113, 255, 0.4);
+      top: -120px;
+      right: -120px;
+    }
+    .hero::after {
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 0, 110, 0.35);
+      bottom: -80px;
+      left: -60px;
+    }
+    .hero__grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 1rem;
+    }
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.4em;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.65);
+      margin: 0;
+    }
+    .hero__title {
+      margin: 0;
+      font-size: clamp(4rem, 7vw, 6rem);
+      line-height: 1.03;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+.hero__title span {
+      background: linear-gradient(90deg, #7b5cff, #00d8ff, #ff5cc5);
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: luminance 4s ease infinite;
+    }
+    .hero__desc {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 1rem;
+    }
+    .hero__stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+      .stat-card {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 16px;
+        padding: 1rem;
+        min-height: 90px;
+        backdrop-filter: blur(12px);
+        box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.02), 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+    .stat-label {
+      margin: 0;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.65);
+    }
+    .stat-value {
+      margin: 0.4rem 0 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+      .hero__cta {
+        width: fit-content;
+        margin-top: 1.25rem;
+        padding: 0.85rem 1.6rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), 
+                    box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                    background 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        will-change: transform, box-shadow;
+      }
+      .hero__cta:hover {
+        transform: translateY(-4px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        background: rgba(255, 255, 255, 0.1);
+      }
+    main {
+      margin-top: 2.5rem;
+    }
+    .modules-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .section-heading h2 {
+      margin: 0.4rem 0;
+      font-size: clamp(2rem, 3vw, 2.6rem);
+    }
+    .section-description {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.65);
+      max-width: 620px;
+    }
+    .modules-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+      .module-block {
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 1.8rem;
+        background: rgba(255, 255, 255, 0.04);
+        backdrop-filter: blur(16px);
+        box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.02), 0 25px 45px rgba(0, 0, 0, 0.4);
+        position: relative;
+        overflow: hidden;
+      }
+    .module-block::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      box-shadow: inset 0 0 80px rgba(255, 255, 255, 0.02);
+    }
+    .module-block--highlight {
+      border-color: rgba(109, 197, 255, 0.7);
+      box-shadow: 0 0 30px rgba(109, 197, 255, 0.4), 0 30px 50px rgba(0, 0, 0, 0.6);
+    }
+    .module-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .module-label {
+      margin: 0;
+      font-size: 0.8rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.55);
+    }
+    .module-header h2 {
+      margin: 0.2rem 0;
+      font-size: 1.8rem;
+    }
+    .module-description {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.65);
+    }
+    .module-meta {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .module-body {
+      margin-top: 1.4rem;
+      position: relative;
+      z-index: 1;
+    }
+    .lecture-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+      .lecture-card {
+        position: relative;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 18px;
+        padding: 1.1rem;
+        text-decoration: none;
+        color: inherit;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(8px);
+        box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.02), 0 15px 35px rgba(0, 0, 0, 0.3);
+        transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), 
+                    box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1), 
+                    border-color 0.5s cubic-bezier(0.23, 1, 0.32, 1), 
+                    background 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        transform-style: preserve-3d;
+        overflow: hidden;
+        will-change: transform, box-shadow;
+      }
+      .lecture-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        border: 1px solid transparent;
+        pointer-events: none;
+        transition: border-color 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .lecture-card:hover {
+        transform: translateY(-8px) rotateX(4deg) rotateY(-4deg) scale(1.02);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+        border-color: rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.08);
+      }
+    .lecture-card__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
+    .lecture-id {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.55);
+    }
+    .lecture-badge {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      color: rgba(255, 255, 255, 0.8);
+    }
+    .lecture-card h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      line-height: 1.3;
+    }
+    .lecture-meta {
+      margin: 0.45rem 0 0;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.65);
+    }
+    .sublaw-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+      .sublaw-card {
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.04);
+        backdrop-filter: blur(8px);
+        box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.02);
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .sublaw-toggle {
+        background: none;
+        border: none;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        color: inherit;
+        cursor: pointer;
+        font: inherit;
+        text-align: left;
+        transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .sublaw-toggle:hover {
+        opacity: 0.8;
+      }
+      .sublaw-label {
+        margin: 0;
+        font-weight: 600;
+        font-size: 1rem;
+      }
+      .sublaw-hint {
+        margin: 0;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .toggle-icon {
+        width: 1.7rem;
+        height: 1.7rem;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        position: relative;
+      }
+      .toggle-icon::after {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-right: 2px solid rgba(255, 255, 255, 0.7);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+        transform: rotate(45deg);
+        display: block;
+      }
+      .sublaw-toggle.is-open .toggle-icon {
+        transform: rotate(180deg);
+      }
+      .sublaw-panel {
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.7s cubic-bezier(0.23, 1, 0.32, 1), 
+                    opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+        opacity: 0;
+      }
+      .sublaw-toggle.is-open + .sublaw-panel {
+        opacity: 1;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .hero {
+        animation: fadeInUp 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+      }
+      .stat-card {
+        animation: fadeInUp 1s cubic-bezier(0.23, 1, 0.32, 1) both;
+      }
+      .stat-card:nth-child(1) { animation-delay: 0.2s; }
+      .stat-card:nth-child(2) { animation-delay: 0.3s; }
+      .stat-card:nth-child(3) { animation-delay: 0.4s; }
+      
+      .module-block {
+        animation: fadeInUp 1s cubic-bezier(0.23, 1, 0.32, 1) both;
+      }
+      .section-heading {
+        animation: fadeInUp 1s cubic-bezier(0.23, 1, 0.32, 1) both;
+      }
+
+      @keyframes luminance {
+      0% {
+        filter: brightness(0.9);
+      }
+      50% {
+        filter: brightness(1.3);
+      }
+      100% {
+        filter: brightness(0.9);
+      }
+    }
+    @media (max-width: 768px) {
+      .hero {
+        padding: 2rem;
+      }
+      .price-tag {
+        position: relative;
+        top: auto;
+        right: auto;
+        display: block;
+        margin-top: 0.5rem;
+        font-size: 1.5rem !important;
+      }
+      .hero__title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+.module-header {
+        flex-direction: column;
+      }
+      .module-meta {
+        margin-top: 0.4rem;
+      }
+      .lecture-grid {
+        grid-template-columns: 1fr;
+      }
+      .sublaw-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero__stats {
+        grid-template-columns: 1fr;
+      }
+    }
+      .module-header h2 {
+        margin-bottom: 0.3rem;
+      }
+      .buy-now-btn {
+        background: linear-gradient(135deg, #f7e27c, #e6b65c, #c89b3c);
+        color: #000;
+        border: none;
+        padding: 0.6rem 1.4rem;
+        border-radius: 999px;
+        font-weight: 700;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 15px rgba(230, 182, 92, 0.3);
+      }
+      .buy-now-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(230, 182, 92, 0.5);
+      }
+      .shine-animation::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.3) 50%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        transform: rotate(30deg);
+        animation: shine-btn 3s infinite;
+      }
+      @keyframes shine-btn {
+        0% { transform: translateX(-100%) rotate(30deg); }
+        100% { transform: translateX(100%) rotate(30deg); }
+      }
+    </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero__grid">
+        <p class="eyebrow">Premium Study Materials</p>
+        <div style="position: relative; display: inline-block;">
+          <h1 class="hero_title">
+            <span class="brand-gold">LEGALEDGE</span>
+            <span>Gold Platinum Batch</span>
+          </h1>
+          <div style="display: flex; align-items: center; gap: 1rem; margin-top: 0.5rem;">
+            <span class="price-tag" style="font-size: clamp(1.5rem, 4vw, 2rem);">₹999</span>
+            <span style="color: white; font-size: 0.7rem;">for 3 year access</span>
+            <button class="buy-now-btn shine-animation" style="font-size: 0.8rem;">Buy Now</button>
+          </div>
+</div>
+</div>
+    </header>
+    <main>
+      <section class="modules-section" aria-labelledby="modules-title">
+        <div class="section-heading">
+          <p class="eyebrow">Curriculum matrix</p>
+          <h2 id="modules-title">Lecture architecture</h2>
+          <p class="section-description">
+            The demo access includes 5 free lectures of each subject. Buy full access to unlock all the lectures. 
+          </p>
+        </div>
+        <div id="modules" data-modules class="modules-grid"></div>
+      </section>
+    </main>
+  </div>
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const rawSubject = (params.get("subject") || "Gold Platinum Batch").trim();
+      const sanitizedSubject = rawSubject
+        .split(/\s+/)
+        .map(
+          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        )
+        .join(" ")
+        .trim() || "Focused Discipline";
+      const normalizedSubject = sanitizedSubject.toLowerCase();
+
+      const heroSubject = document.querySelector("[data-hero-subject]");
+      const heroSubjectMention = document.querySelector(
+        "[data-hero-subject-mention]"
+      );
+      const heroFlow = document.querySelector("[data-hero-flow]");
+      const totalLecturesNode = document.querySelector("[data-total-lectures]");
+      const subjectCountNode = document.querySelector("[data-subject-count]");
+
+      if (heroSubject) heroSubject.textContent = sanitizedSubject;
+      if (heroSubjectMention)
+        heroSubjectMention.textContent = sanitizedSubject;
+
+      const modules = [
+        {
+          title: "English Language",
+          description: "Refine interpretation & response fluency.",
+          lectures: [
+            { title: "Strategy", id: "EL-01" },
+            { title: "Verbs, Tenses and Subject-Verb Agreement", id: "EL-02" },
+            { title: "Contextual Vocabulary", id: "EL-03" },
+            { title: "Figures of Speech – Part 01", id: "EL-04" },
+            { title: "High Frequency Words – I", id: "EL-05" },
+            { title: "Figures of Speech – Part 02", id: "EL-06" },
+            { title: "Flow of Ideas", id: "EL-07" },
+            { title: "Various Question Types of RC", id: "EL-08" },
+            { title: "Speed Enhancement", id: "EL-09" },
+            { title: "Literary Devices", id: "EL-10" },
+            { title: "Short RC Passages", id: "EL-11" },
+            { title: "Inference-Based Questions", id: "EL-12" },
+            { title: "Current Affairs–Based Passages", id: "EL-13" },
+            { title: "Main Idea and Inference", id: "EL-14" },
+            { title: "History Passages", id: "EL-15" },
+            { title: "Literature Passages", id: "EL-16" },
+            { title: "Non-Fiction Literature Passages", id: "EL-17" },
+            { title: "Source-Based Questions", id: "EL-18" },
+            { title: "Indian Context Passages", id: "EL-19" },
+            { title: "Economics Passages", id: "EL-20" },
+            { title: "Science Passages", id: "EL-21" },
+            { title: "Psychology Passages", id: "EL-22" },
+            { title: "Negative Detail Passages", id: "EL-23" },
+            { title: "RC Marathon", id: "EL-24" },
+            { title: "RC DCS", id: "EL-25" },
+            { title: "Mixed Bag", id: "EL-26" },
+            { title: "Idea Flow", id: "EL-27" },
+            { title: "Phrasal Verbs", id: "EL-28" },
+            { title: "Philosophy Passages", id: "EL-29" },
+            { title: "Art and Culture Passages", id: "EL-30" },
+            { title: "Hard Questions", id: "EL-31" },
+            { title: "Idioms", id: "EL-32" },
+            { title: "High Frequency Words – II", id: "EL-33" },
+            { title: "Legal Passages", id: "EL-34" },
+            { title: "RC on Polity", id: "EL-35" },
+            { title: "RC on Geopolitics", id: "EL-36" },
+            { title: "RC on Various Question Types", id: "EL-37" },
+            { title: "Enhance RSM Assignment 01", id: "EL-38" },
+            { title: "Enhance RSM Assignment 02", id: "EL-39" },
+            { title: "Enhance RSM Assignment 03", id: "EL-40" },
+            { title: "Enhance RSM Assignment 04", id: "EL-41" },
+            { title: "Enhance RSM Assignment 05", id: "EL-42" },
+            { title: "Enhance RSM Assignment 06", id: "EL-43" },
+            { title: "Enhance RSM Assignment 07", id: "EL-44" },
+            { title: "Enhance RSM Assignment 08", id: "EL-45" }
+          ]
+        },
+        {
+          title: "Legal Reasoning",
+          description: "Sculpt tight logic frameworks for legal mastery.",
+          sublaws: [
+            {
+              name: "Legal Reasoning",
+              lectures: [
+                { title: "Enhance RSM Assignment 01", id: "LR-01" },
+                { title: "Enhance RSM Assignment 02", id: "LR-02" },
+                { title: "Enhance RSM Assignment 03", id: "LR-03" },
+                { title: "Enhance RSM Assignment 04", id: "LR-04" },
+                { title: "Enhance RSM Assignment 05", id: "LR-05" },
+                { title: "Enhance RSM Assignment 06", id: "LR-06" },
+                { title: "Enhance RSM Assignment 07", id: "LR-07" },
+                { title: "Enhance RSM Assignment 08", id: "LR-08" }
+              ]
+            },
+            {
+              name: "Law of Contracts",
+              lectures: [
+                { title: "Contract Law – I", id: "LC-01" },
+                { title: "Contract Law – II", id: "LC-02" },
+                { title: "Contract Law – III", id: "LC-03" },
+                { title: "Miscellaneous Contract Law – I", id: "LC-04" },
+                { title: "Miscellaneous Contract Law – II", id: "LC-05" }
+              ]
+            },
+            {
+              name: "Law of Torts",
+              lectures: [
+                { title: "Law of Torts – I", id: "LT-01" },
+                { title: "Law of Torts – II", id: "LT-02" },
+                { title: "Law of Torts – III", id: "LT-03" },
+                { title: "Law of Torts – IV", id: "LT-04" },
+                { title: "Law of Torts – V", id: "LT-05" },
+                { title: "Law of Torts – VI", id: "LT-06" },
+                { title: "Law of Torts – VII", id: "LT-07" },
+                { title: "Torts Assignment", id: "LT-08" }
+              ]
+            },
+            {
+              name: "Constitutional Law",
+              lectures: [
+                { title: "Constitutional Law – I", id: "LT-01" },
+                { title: "Constitutional Law – II", id: "LT-02" },
+                { title: "Constitutional Law – III", id: "LT-03" },
+                { title: "Constitutional Law – IV", id: "LT-04" },
+                { title: "Miscellaneous Constitutional Law – I", id: "LT-05" },
+                { title: "Miscellaneous Constitutional Law – II", id: "LT-06" },
+                { title: "Miscellaneous Constitutional Law – III", id: "LT-07" }
+              ]
+            },
+            {
+              name: "Criminal Law",
+              lectures: [
+                { title: "Criminal Law – I", id: "CL-01" },
+                { title: "Criminal Law – II", id: "CL-02" },
+                { title: "Criminal Law – III", id: "CL-03" },
+                { title: "Criminal Law – IV", id: "CL-04" },
+                { title: "Miscellaneous Criminal Law – I", id: "CL-05" },
+                { title: "Criminal Law Assignment", id: "CL-06" }
+              ]
+            },
+            {
+              name: "Miscellaneous Laws",
+              lectures: [
+                { title: "Miscellaneous Law Topics", id: "ML-01" },
+                { title: "Miscellaneous Law Topics – II", id: "ML-02" },
+                { title: "Miscellaneous Law Sheet – III", id: "ML-03" },
+                { title: "Miscellaneous Law Sheet – IV", id: "ML-04" },
+                { title: "Miscellaneous Law Sheet – V", id: "ML-05" },
+                { title: "Miscellaneous Law Assignment", id: "ML-06" }
+              ]
+            },
+            {
+              name: "Legal Aptitude Sureshots",
+              lectures: [
+                { title: "Environment Law – I", id: "LS-01" },
+                { title: "Environment Law – II", id: "LS-02" },
+                { title: "Miscellaneous Law – I", id: "LS-03" },
+                { title: "Miscellaneous Law – II", id: "LS-04" },
+                { title: "Miscellaneous Law – III", id: "LS-05" },
+                { title: "Family Law – I", id: "LS-06" },
+                { title: "Family Law – II", id: "LS-07" },
+                { title: "Family Law – III", id: "LS-08" },
+                { title: "International Law – I", id: "LS-09" },
+                { title: "International Law – II", id: "LS-10" },
+                { title: "Corporate Law – I", id: "LS-11" },
+                { title: "Corporate Law – II", id: "LS-12" },
+                { title: "Alternative Dispute Resolution", id: "LS-13" },
+                { title: "Labour Law", id: "LS-14" },
+                { title: "Property Law", id: "LS-15" },
+                { title: "Penal Law – I", id: "LS-16" },
+                { title: "Penal Law – II", id: "LS-17" },
+                { title: "Penal Law – III", id: "LS-18" },
+                { title: "Company Law", id: "LS-19" },
+                { title: "Intellectual Property Law", id: "LS-20" }
+              ]
+            },
+          ]
+        },
+        {
+          title: "Critical Reasoning",
+          description: "Sharpen inference & evaluation control.",
+          lectures: [
+            { title: "Orientation", id: "CR-01" },
+            { title: "Statement-Based Reasoning – I", id: "CR-02" },
+            { title: "Statement-Based Reasoning – II", id: "CR-03" },
+            { title: "Intro Paragraph–Based Reasoning", id: "CR-04" },
+            { title: "Conclusions and Inferences", id: "CR-05" },
+            { title: "Strengthen and Weaken", id: "CR-06" },
+            { title: "Flaws and Paradox", id: "CR-07" },
+            { title: "Parallel Reasoning", id: "CR-08" },
+            { title: "Arguments", id: "CR-09" },
+            { title: "Economics – I", id: "CR-10" },
+            { title: "Geopolitics – I", id: "CR-11" },
+            { title: "Law – I", id: "CR-12" },
+            { title: "Arts and Literature", id: "CR-13" },
+            { title: "History", id: "CR-14" },
+            { title: "Politics – I", id: "CR-15" },
+            { title: "Mixed Bag – I", id: "CR-16" },
+            { title: "Economics – II", id: "CR-17" },
+            { title: "Economics – III", id: "CR-18" },
+            { title: "Statement-Based Reasoning – IV (Para Completion and Analogies)", id: "CR-19" },
+            { title: "Environment", id: "CR-20" },
+            { title: "Enhance RSM Assignment 01", id: "CR-21" },
+            { title: "Enhance RSM Assignment 02", id: "CR-22" },
+            { title: "Enhance RSM Assignment 03", id: "CR-23" },
+            { title: "Enhance RSM Assignment 04", id: "CR-24" },
+            { title: "Enhance RSM Assignment 05", id: "CR-25" },
+            { title: "Enhance RSM Assignment 06", id: "CR-26" }
+          ]
+        },
+        {
+          title: "Analytical Reasoning",
+          description: "Model complex webs & constraints.",
+          lectures: [
+            { title: "Counting Figures", id: "AR-01" },
+            { title: "Tabulation", id: "AR-02" },
+            { title: "Venn Diagrams and Matrix", id: "AR-03" },
+            { title: "Data Arrangements", id: "AR-04" },
+            { title: "Syllogisms", id: "AR-05" },
+            { title: "Connectives and Binary Logic", id: "AR-06" },
+            { title: "Parallel Reasoning", id: "AR-07" },
+            { title: "Puzzles", id: "AR-08" },
+            { title: "Direction and Distance", id: "AR-09" },
+            { title: "Coding and Decoding", id: "AR-10" },
+            { title: "Blood Relations", id: "AR-11" },
+            { title: "Calendar", id: "AR-12" },
+            { title: "Sequences and Analogy", id: "AR-13" },
+            { title: "Ranking", id: "AR-14" },
+            { title: "Clock", id: "AR-15" },
+            { title: "Dice, Cubes, and Cuboids", id: "AR-16" },
+            { title: "Alphabet Test", id: "AR-17" },
+            { title: "Input–Output", id: "AR-18" }
+          ]
+        },
+        {
+          title: "Quantitative Techniques",
+          description: "Precision with numbers & interpretation.",
+          lectures: [
+            { title: "Orientation", id: "QT-01" },
+            { title: "Basics of Ratio", id: "QT-02" },
+            { title: "Ratio Questions", id: "QT-03" },
+            { title: "Basics of Average", id: "QT-04" },
+            { title: "Basic Algebra", id: "QT-05" },
+            { title: "Classification of Numbers", id: "QT-06" },
+            { title: "Caselet on Percentages and Ratio – I", id: "QT-07" },
+            { title: "Venn Diagrams – I", id: "QT-08" },
+            { title: "Basics of Simple Interest", id: "QT-09" },
+            { title: "Simple Interest Practice", id: "QT-10" },
+            { title: "Basics of Compound Interest", id: "QT-11" },
+            { title: "Compound Interest Practice", id: "QT-12" },
+            { title: "Basics of Profit and Loss", id: "QT-13" },
+            { title: "Profit and Loss Practice", id: "QT-14" },
+            { title: "DI on Profit and Loss", id: "QT-15" },
+            { title: "DI on Simple and Compound Interest", id: "QT-16" },
+            { title: "Caselet on Percentages and Ratio – II", id: "QT-17" },
+            { title: "Mensuration – 2D", id: "QT-18" },
+            { title: "Mensuration – 3D", id: "QT-19" },
+            { title: "DI on Mensuration", id: "QT-20" },
+            { title: "Time and Work", id: "QT-21" },
+            { title: "DI on Time and Work", id: "QT-22" },
+            { title: "DI on Simple and Compound Interest – II", id: "QT-23" },
+            { title: "Pipes and Cisterns", id: "QT-24" },
+            { title: "Mixed Graph – I", id: "QT-25" },
+            { title: "Venn Diagrams – II", id: "QT-26" },
+            { title: "Partnership", id: "QT-27" },
+            { title: "DI on Partnership", id: "QT-28" },
+            { title: "Mixtures and Allegations", id: "QT-29" },
+            { title: "DI on Mixtures", id: "QT-30" },
+            { title: "Permutation and Combination", id: "QT-31" },
+            { title: "Boats and Streams", id: "QT-32" },
+            { title: "Time, Speed, and Distance", id: "QT-33" },
+            { title: "DI Based on Time, Speed, and Distance", id: "QT-34" },
+            { title: "DI on Probability", id: "QT-35" },
+            { title: "Mixed Bag – I", id: "QT-36" },
+            { title: "Enhance RSM Assignment 01", id: "QT-37" },
+            { title: "Enhance RSM Assignment 02", id: "QT-38" },
+            { title: "Enhance RSM Assignment 03", id: "QT-39" },
+            { title: "Enhance RSM Assignment 04", id: "QT-40" },
+            { title: "Enhance RSM Assignment 05", id: "QT-41" },
+            { title: "Enhance RSM Assignment 06", id: "QT-42" },
+            { title: "Enhance RSM Assignment 07", id: "QT-43" },
+            { title: "Enhance RSM Assignment 08", id: "QT-44" },
+            { title: "Enhance RSM Assignment 09", id: "QT-45" }
+          ]
+        }
+      ];
+
+      const calcLectureCount = (module) => {
+        if (module.lectures) return module.lectures.length;
+        if (module.sublaws)
+          return module.sublaws.reduce(
+            (acc, sublaw) => acc + (sublaw.lectures?.length || 0),
+            0
+          );
+        return 0;
+      };
+
+      const totalLectures = modules.reduce(
+        (acc, mod) => acc + calcLectureCount(mod),
+        0
+      );
+
+      if (totalLecturesNode) totalLecturesNode.textContent = totalLectures;
+
+      const selectedModule = modules.find(
+        (mod) => mod.title.toLowerCase() === normalizedSubject
+      );
+      const selectedCount = selectedModule
+        ? calcLectureCount(selectedModule)
+        : selectedModule;
+      if (subjectCountNode)
+        subjectCountNode.textContent = selectedCount || selectedModule
+          ? selectedCount
+          : "0";
+
+      if (heroFlow)
+        heroFlow.textContent = selectedModule
+          ? `Deep dive into ${selectedModule.title}`
+          : "Cross-module expedition";
+
+      if (selectedModule && subjectCountNode)
+        subjectCountNode.textContent = selectedCount;
+
+      if (subjectCountNode && !selectedModule) {
+        subjectCountNode.textContent = "0";
+      }
+
+      if (document.title && sanitizedSubject) {
+        document.title = `${sanitizedSubject} | Premium Subject Hub`;
+      }
+
+      const modulesContainer = document.querySelector("[data-modules]");
+      if (!modulesContainer) return;
+
+      const slugify = (text) =>
+        text
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/(^-|-$)/g, "");
+
+      const createLectureCard = (moduleTitle, lecture) => {
+        const card = document.createElement("a");
+        card.className = "lecture-card";
+        card.setAttribute(
+          "href",
+          `lecture.html?subject=${encodeURIComponent(
+            moduleTitle
+          )}&lecture=${encodeURIComponent(lecture.id)}`
+        );
+        card.setAttribute(
+          "aria-label",
+          `${lecture.title} — ${lecture.id} in ${moduleTitle}`
+        );
+        card.innerHTML = `
+          <div class="lecture-card__header">
+            <span class="lecture-id">${lecture.id}</span>
+            <svg class="lecture-lock" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+<h3>${lecture.title}</h3>
+`;
+        return card;
+      };
+
+      const createExpandCard = (label = "View all lectures") => {
+        const card = document.createElement("div");
+        card.className = "lecture-card lecture-card--expand";
+        card.setAttribute("role", "button");
+        card.setAttribute("aria-expanded", "false");
+
+        card.innerHTML = `
+          <div class="lecture-card__header">
+            <span class="lecture-id">+</span>
+            <svg class="lecture-lock" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <span class="lecture-badge">More</span>
+          </div>
+<h3>${label}</h3>
+          <p class="lecture-meta">Tap to expand full lecture list</p>
+`;
+
+        return card;
+      };
+
+      modules.forEach((module) => {
+        const section = document.createElement("section");
+        section.className = "module-block";
+        if (module.title.toLowerCase() === normalizedSubject) {
+          section.classList.add("module-block--highlight");
+        }
+        section.setAttribute(
+          "aria-label",
+          `${module.title} module with ${calcLectureCount(module)} lectures`
+        );
+
+        const header = document.createElement("div");
+        header.className = "module-header";
+        header.innerHTML = `
+          <div>
+            <p class="module-label">Module</p>
+            <h2>${module.title}</h2>
+            <p class="module-description">${module.description}</p>
+          </div>
+          <div class="module-meta">${calcLectureCount(
+            module
+          )} immersive lectures</div>
+        `;
+        const body = document.createElement("div");
+        body.className = "module-body";
+
+        if (module.sublaws && module.sublaws.length) {
+          const sublawGrid = document.createElement("div");
+          sublawGrid.className = "sublaw-grid";
+          module.sublaws.forEach((sublaw, index) => {
+            const sublawCard = document.createElement("article");
+            sublawCard.className = "sublaw-card";
+            const toggle = document.createElement("button");
+            toggle.className = "sublaw-toggle";
+            toggle.type = "button";
+            const panelId = `${slugify(module.title)}-sublaw-${index}`;
+            toggle.setAttribute("aria-expanded", "false");
+            toggle.setAttribute("aria-controls", panelId);
+            toggle.innerHTML = `
+              <div>
+                <p class="sublaw-label">${sublaw.name}</p>
+                <p class="sublaw-hint">${sublaw.lectures.length} lectures</p>
+              </div>
+              <span class="toggle-icon"></span>
+            `;
+            const panel = document.createElement("div");
+            panel.className = "sublaw-panel";
+            panel.id = panelId;
+            panel.setAttribute("aria-hidden", "true");
+            const lectureGrid = document.createElement("div");
+            lectureGrid.className = "lecture-grid";
+            sublaw.lectures.forEach((lecture) => {
+              lectureGrid.appendChild(createLectureCard(module.title, lecture));
+            });
+            panel.appendChild(lectureGrid);
+            sublawCard.appendChild(toggle);
+            sublawCard.appendChild(panel);
+            sublawGrid.appendChild(sublawCard);
+          });
+          body.appendChild(sublawGrid);
+        } else if (module.lectures && module.lectures.length) {
+          const lectureGrid = document.createElement("div");
+          lectureGrid.className = "lecture-grid";
+          module.lectures.forEach((lecture) => {
+            lectureGrid.appendChild(createLectureCard(module.title, lecture));
+          });
+          body.appendChild(lectureGrid);
+        }
+
+        section.appendChild(header);
+        section.appendChild(body);
+        modulesContainer.appendChild(section);
+      });
+
+      modulesContainer
+        .querySelectorAll(".sublaw-toggle")
+        .forEach((toggle) => {
+          const panel = document.getElementById(
+            toggle.getAttribute("aria-controls")
+          );
+          let open = false;
+          toggle.addEventListener("click", () => {
+            open = !open;
+            toggle.setAttribute("aria-expanded", open.toString());
+            toggle.classList.toggle("is-open", open);
+            if (panel) {
+              panel.style.maxHeight = open
+                ? panel.scrollHeight + "px"
+                : "0";
+              panel.setAttribute("aria-hidden", (!open).toString());
+            }
+          });
+        });
+    })();
+  </script>
+<script src="https://huggingface.co/deepsite/deepsite-badge.js"></script>
+</body>
+</html>

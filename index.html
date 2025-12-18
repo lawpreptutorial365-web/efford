@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LegalEdge | Courses</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  background:
+    radial-gradient(circle at 10% -20%, rgba(83,113,255,0.25), transparent 40%),
+    radial-gradient(circle at 80% 0%, rgba(255,0,110,0.35), transparent 45%),
+    #01020b;
+  color: #f2f2f2;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255,255,255,0.02), rgba(0,0,0,0.85));
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  font-size: 1.6rem;
+  font-weight: 800;
+  background: linear-gradient(135deg,#f7e27c,#e6b65c,#c89b3c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.login-btn {
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  cursor: pointer;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0,0,0,.5);
+}
+
+/* ===== PAGE ===== */
+.page {
+  max-width: 1100px;
+  margin: auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* ===== HERO ===== */
+.hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.8rem,6vw,4rem);
+  margin: 0;
+}
+
+.hero p {
+  margin-top: .8rem;
+  color: rgba(255,255,255,0.65);
+}
+
+/* ===== EXAM LIST ===== */
+.exam-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+/* ===== EXAM CARD ===== */
+.exam-card {
+  background: rgba(8,12,24,0.9);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 22px;
+  padding: 1.6rem;
+  cursor: pointer;
+  box-shadow: 0 25px 45px rgba(1,3,10,0.55);
+  transition: transform .45s ease, box-shadow .45s ease;
+}
+
+.exam-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 35px 60px rgba(0,0,0,0.65);
+}
+
+.exam-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.exam-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.toggle-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .4s ease;
+}
+
+.toggle-icon::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid rgba(255,255,255,.8);
+  border-bottom: 2px solid rgba(255,255,255,.8);
+  transform: rotate(45deg);
+}
+
+.exam-card.open .toggle-icon {
+  transform: rotate(180deg);
+}
+
+/* ===== BATCH LIST ===== */
+.batch-list {
+  margin-top: 1.2rem;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height .6s ease;
+}
+
+.exam-card.open .batch-list {
+  max-height: 500px;
+}
+
+/* ===== BATCH ITEM ===== */
+.batch-item {
+  margin-top: .9rem;
+  padding: 1rem 1.2rem;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.045);
+  border: 1px solid rgba(255,255,255,0.14);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background .3s ease, transform .3s ease;
+}
+
+.batch-item:hover {
+  background: rgba(255,255,255,0.07);
+  transform: translateX(4px);
+}
+
+.batch-name {
+    font-weight: 500;
+  }
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="brand">EFFORD</div>
+  <button class="login-btn">Login</button>
+</nav>
+
+<div class="page">
+
+  <section class="hero">
+    <h1>Choose Your Exam</h1>
+  </section>
+
+  <section class="exam-list">
+
+    <!-- CLAT -->
+    <div class="exam-card">
+      <div class="exam-header">
+        <div class="exam-title">CLAT</div>
+        <div class="toggle-icon"></div>
+      </div>
+      <div class="batch-list">
+        <div class="batch-item">
+          <span class="batch-name">Platinum Gold Batch 2025–26</span>
+          <div class="batch-actions">
+            <button class="view-batch-btn" style="padding: 0.5rem 1.2rem; border-radius: 999px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white; transition: all 0.3s ease;">View Batch</button>
+          </div>
+        </div>
+        <div class="batch-item">
+          <span class="batch-name">Gold Batch 2025</span>
+          <div class="batch-actions">
+            <button class="view-batch-btn" style="padding: 0.5rem 1.2rem; border-radius: 999px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white; transition: all 0.3s ease;">View Batch</button>
+          </div>
+        </div>
+</div>
+    </div>
+
+    <!-- AILET -->
+    <div class="exam-card">
+      <div class="exam-header">
+        <div class="exam-title">AILET</div>
+        <div class="toggle-icon"></div>
+      </div>
+      <div class="batch-list">
+        <div class="batch-item">
+          <span class="batch-name">AILET Elite Batch</span>
+          <div class="batch-actions">
+            <button class="view-batch-btn" style="padding: 0.5rem 1.2rem; border-radius: 999px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white; transition: all 0.3s ease;">View Batch</button>
+          </div>
+        </div>
+</div>
+    </div>
+
+</div>
+    </div>
+
+  </section>
+
+</div>
+
+<script>
+document.querySelectorAll(".exam-card").forEach(card => {
+  card.addEventListener("click", () => {
+    card.classList.toggle("open");
+  });
+});
+</script>
+
+</body>
+</html>
