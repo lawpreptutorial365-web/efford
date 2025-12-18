@@ -179,7 +179,20 @@ body::before {
 </head>
 
 <body>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 
+  const firebaseConfig = {
+    apiKey: "XXXX",
+    authDomain: "XXXX.firebaseapp.com",
+    projectId: "XXXX",
+    storageBucket: "XXXX.appspot.com",
+    messagingSenderId: "XXXX",
+    appId: "XXXX"
+  };
+
+  const app = initializeApp(firebaseConfig);
+</script>
 <nav class="navbar">
   <div class="brand">EFFORD</div>
   <button class="login-btn">Login</button>
