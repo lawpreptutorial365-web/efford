@@ -627,6 +627,15 @@
     </button>
   </div>
 </div>
+  <script>
+  function handleBuyClick() {
+    if (!window.currentUser) {
+      openAuthModal();
+    } else {
+      alert("Proceed to payment (next step)");
+    }
+  }
+</script>
   <div class="page">
     <header class="hero">
       <div class="hero__grid">
@@ -639,7 +648,7 @@
           <div style="display: flex; align-items: center; gap: 1rem; margin-top: 0.5rem;">
             <span class="price-tag" style="font-size: clamp(1.5rem, 4vw, 2rem);">₹999</span>
             <span style="color: white; font-size: 0.7rem;">for 3 year access</span>
-            <button class="buy-now-btn shine-animation" style="font-size: 0.8rem;">Buy Now</button>
+            <button class="buy-now-btn" onclick="handleBuyClick()">Buy Now</button>
           </div>
 </div>
 </div>
